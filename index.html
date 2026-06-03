@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PulseWatch — Uptime Monitor</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.x/tabler-icons.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2 class="sr-only">PulseWatch — real-time uptime status dashboard for websites, APIs, servers, and databases</h2>
+
+  <div class="app">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-dot" id="globalDot"></div>
+        <span class="brand-name">PulseWatch — Status Dashboard</span>
+      </div>
+      <div class="topbar-actions">
+        <button class="btn" onclick="refreshAll()"><i class="ti ti-refresh" aria-hidden="true"></i> Refresh</button>
+        <button class="btn btn-primary" onclick="toggleAddForm()"><i class="ti ti-plus" aria-hidden="true"></i> Add monitor</button>
+      </div>
+    </div>
+
+    <div class="metrics-grid" id="metricsGrid"></div>
+
+    <div class="section-header">
+      <span class="section-title">Monitors</span>
+      <span class="last-checked" id="lastChecked">Last checked: just now</span>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" onclick="setFilter('all', this)">All</button>
+      <button class="filter-btn" onclick="setFilter('website', this)">Websites</button>
+      <button class="filter-btn" onclick="setFilter('api', this)">APIs</button>
+      <button class="filter-btn" onclick="setFilter('server', this)">Servers</button>
+      <button class="filter-btn" onclick="setFilter('database', this)">Databases</button>
+    </div>
+
+    <div class="monitor-list" id="monitorList"></div>
+
+    <div class="add-form" id="addForm">
+      <div class="add-form-title">Add new monitor</div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="f-name">Name</label>
+          <input id="f-name" placeholder="My Service" />
+        </div>
+        <div class="form-field">
+          <label for="f-type">Type</label>
+          <select id="f-type">
+            <option value="website">Website</option>
+            <option value="api">API</option>
+            <option value="server">Server / IP</option>
+            <option value="database">Database</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="f-url">URL / Host</label>
+          <input id="f-url" placeholder="https://example.com" />
+        </div>
+        <div class="form-field">
+          <label for="f-interval">Check interval</label>
+          <select id="f-interval">
+            <option value="30">Every 30 seconds</option>
+            <option value="60" selected>Every 1 minute</option>
+            <option value="300">Every 5 minutes</option>
+            <option value="600">Every 10 minutes</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn" onclick="toggleAddForm()">Cancel</button>
+        <button class="btn btn-primary" onclick="addMonitor()">Add monitor</button>
+      </div>
+    </div>
+
+    <div class="activity-section">
+      <div class="section-header" style="margin-bottom:10px">
+        <span class="section-title">Recent incidents</span>
+      </div>
+      <div class="incident-list" id="incidentList"></div>
+    </div>
+
+    <div class="resp-chart">
+      <div class="chart-wrap">
+        <div class="chart-title">Response time (ms) — last 30 checks · Stripe API</div>
+        <canvas id="sparkline"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
