@@ -5,8 +5,8 @@
 // ── State ──────────────────────────────────────────────────────────────────
 
 let monitors = [
-  { id: 1, name: "Main Website",     url: "https://acme.com",                    type: "website",  status: "up",       uptime: 99.97, responseMs: 142, history: genHistory(0.02) },
-  { id: 2, name: "Stripe API",       url: "https://api.stripe.com/v1/health",    type: "api",      status: "up",       uptime: 100,   responseMs: 89,  history: genHistory(0) },
+  { id: 1, name: "Yurwallet",        url: "http://10.10.115.27:6005/",           type: "website",  status: "up",       uptime: 99.97, responseMs: 142, history: genHistory(0.02) },
+  { id: 2, name: "Readycash API",   url: "https://api.readycash.com.ng/api/cac-amount",    type: "api",      status: "up",       uptime: 100,   responseMs: 89,  history: genHistory(0) },
   { id: 3, name: "Auth Service",     url: "https://auth.acme.com/ping",          type: "api",      status: "degraded", uptime: 98.1,  responseMs: 540, history: genHistory(0.08) },
   { id: 4, name: "DB Primary",       url: "db-prod-01.acme.internal:5432",       type: "database", status: "up",       uptime: 99.99, responseMs: 3,   history: genHistory(0.005) },
   { id: 5, name: "Prod Server",      url: "10.0.1.10",                           type: "server",   status: "down",     uptime: 95.4,  responseMs: 0,   history: genHistory(0.3) },
@@ -18,7 +18,7 @@ let monitors = [
 let incidents = [
   { id: 1, name: "Prod Server",   msg: "Connection timeout — host unreachable",   time: "2 min ago",  status: "ongoing",       severity: "down" },
   { id: 2, name: "Auth Service",  msg: "Elevated response times (>500ms)",         time: "18 min ago", status: "investigating",  severity: "degraded" },
-  { id: 3, name: "Main Website",  msg: "HTTP 503 on /checkout endpoint",           time: "4h ago",     status: "resolved",      severity: "down" },
+  { id: 3, name: "Yurwallet",  msg: "HTTP 503 on /checkout endpoint",           time: "4h ago",     status: "resolved",      severity: "down" },
 ];
 
 let currentFilter = "all";
@@ -168,7 +168,7 @@ function renderIncidents() {
 // ── Render: Response time chart ────────────────────────────────────────────
 
 function renderChart() {
-  const m    = monitors.find(x => x.name === "Stripe API") || monitors[0];
+  const m    = monitors.find(x => x.name === "Readycash API") || monitors[0];
   const data = genResponseTrend(m.responseMs);
   const ctx  = document.getElementById("sparkline").getContext("2d");
 
