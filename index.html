@@ -18,6 +18,16 @@
         <span class="brand-name">PulseWatch — Status Dashboard</span>
       </div>
       <div class="topbar-actions">
+        <div class="auto-refresh-wrap">
+          <span class="countdown-label">Next check in <strong id="countdown">—</strong></span>
+          <select id="intervalSelect" onchange="setAutoRefreshInterval(this.value)" title="Auto-refresh interval">
+            <option value="10">Every 10s</option>
+            <option value="30" selected>Every 30s</option>
+            <option value="60">Every 1m</option>
+            <option value="300">Every 5m</option>
+            <option value="0">Paused</option>
+          </select>
+        </div>
         <button class="btn" onclick="refreshAll()"><i class="ti ti-refresh" aria-hidden="true"></i> Refresh</button>
         <button class="btn btn-primary" onclick="toggleAddForm()"><i class="ti ti-plus" aria-hidden="true"></i> Add monitor</button>
       </div>

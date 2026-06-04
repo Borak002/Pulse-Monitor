@@ -479,3 +479,41 @@ html, body {
   .monitor-stats { display: none; }
   .uptime-bar    { display: none; }
 }
+
+/* ── Auto-refresh controls ── */
+.auto-refresh-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-bg-secondary);
+  border: 0.5px solid var(--color-border-mid);
+  border-radius: var(--radius-md);
+  padding: 5px 10px;
+}
+
+.countdown-label {
+  font-size: 12px;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+.countdown-label strong {
+  color: var(--color-text-primary);
+  font-variant-numeric: tabular-nums;
+  min-width: 28px;
+  display: inline-block;
+}
+
+.auto-refresh-wrap select {
+  font-size: 12px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-primary);
+  cursor: pointer;
+  font-family: var(--font-sans);
+  outline: none;
+}
+
+/* checking status dot */
+.status-dot.checking  { background: var(--color-text-tertiary); animation: blink 0.8s ease-in-out infinite; }
+.status-badge.checking { background: var(--color-bg-tertiary); color: var(--color-text-secondary); }
